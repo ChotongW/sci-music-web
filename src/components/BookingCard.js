@@ -8,6 +8,8 @@ import Button from "@mui/material/Button";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { BrowserRouter as Router, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme({
   typography: {
@@ -16,6 +18,12 @@ const theme = createTheme({
 });
 
 function BookingCard(props) {
+  const callBooking = (event) => {
+    let path = `/booking`;
+    navigate(path);
+  };
+
+  let navigate = useNavigate();
   const { card } = props;
   console.log(card);
   return (
@@ -24,7 +32,7 @@ function BookingCard(props) {
         <Card>
           <CardMedia
             component="img"
-            style={{ height: 140, paddingTop: "20%" }}
+            style={{ height: 140 }}
             image={card.image}
             alt={card.imageLabel}
           />
@@ -36,7 +44,7 @@ function BookingCard(props) {
               {card.description}
             </Typography>
             <CardActions>
-              <Button variant="contained" size="large">
+              <Button variant="contained" size="large" onClick={callBooking}>
                 จอง
               </Button>
             </CardActions>

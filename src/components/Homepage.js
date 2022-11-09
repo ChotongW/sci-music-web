@@ -32,35 +32,6 @@ const BookingCard = [
   },
 ];
 
-// function MediaCard() {
-//   return (
-//     <ThemeProvider theme={theme}>
-//       <Card sx={{ maxWidth: 345 }}>
-//         <CardMedia
-//           component="img"
-//           height="140"
-//           image={require("../img/music_room.jpg")}
-//           alt="music room"
-//         />
-//         <CardContent>
-//           <Typography gutterBottom variant="h5" component="div">
-//             จองห้องซ้อม
-//           </Typography>
-//           <Typography variant="body2" color="text.secondary">
-//             Lizards are a widespread group of squamate reptiles, with over 6,000
-//             species, ranging across all continents except Antarctica
-//           </Typography>
-//         </CardContent>
-//         <CardActions>
-//           <Button variant="contained" size="large">
-//             จอง
-//           </Button>
-//         </CardActions>
-//       </Card>
-//     </ThemeProvider>
-//   );
-// }
-
 function Homepage() {
   const design = { color: "blue", textAlign: "center" };
   return (
