@@ -1,28 +1,35 @@
 import "./App.css";
 import React from "react";
-import ReactDOM from "react-dom/client";
+import MainLayoutUser from "./components/MainLayout-user";
 import Homepage from "./components/Homepage";
 import AppBar from "./components/AppBar";
 import Booking from "./components/user/Booking";
+import Login from "./components/user/Login";
+import Register from "./components/user/Register";
+import Dashboard from "./components/user/Dashboard";
+
 import {
   BrowserRouter as Router,
   Routes,
-  Switch,
+  Navigate,
   Route,
   Link,
 } from "react-router-dom";
 
 function App() {
   return (
-    <Router>
-      <div>
-        <AppBar />
-        <Routes>
-          <Route path="/" element={<Homepage />} />
+    <div>
+      <Routes>
+        <Route path="/" element={<MainLayoutUser />}>
+          <Route path="" element={<Homepage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/booking" element={<Booking />} />
-        </Routes>
-      </div>
-    </Router>
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
+      </Routes>
+    </div>
   );
 }
 

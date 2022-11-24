@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect } from "react";
 import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
@@ -7,9 +8,10 @@ import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import IconButton from "@mui/material/IconButton";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { BrowserRouter as Router, Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
 
 const theme = createTheme({
   typography: {
@@ -23,9 +25,22 @@ function BookingCard(props) {
     navigate(path);
   };
 
+  const goLogin = (event) => {
+    let path = `/login`;
+    navigate(path);
+  };
+
+  const [onLoginuser, setonLoginuser] = useOutletContext();
+
+  // useEffect(() => {
+  //   if (!onLoginuser) {
+  //     navigate("/Login");
+  //   }
+  // }, [onLoginuser]);
+
   let navigate = useNavigate();
   const { card } = props;
-  console.log(card);
+  //console.log(card);
   return (
     <ThemeProvider theme={theme}>
       <Grid item xs={12} md={4}>
@@ -44,9 +59,16 @@ function BookingCard(props) {
               {card.description}
             </Typography>
             <CardActions>
-              <Button variant="contained" size="large" onClick={callBooking}>
-                จอง
-              </Button>
+              {!onLoginuser && (
+                <Button variant="contained" size="large" onClick={goLogin}>
+                  กรุณา Login ก่อนจอง
+                </Button>
+              )}
+              {onLoginuser && (
+                <Button variant="contained" size="large" onClick={callBooking}>
+                  จอง
+                </Button>
+              )}
             </CardActions>
           </CardContent>
         </Card>
